@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog de Trabajo Bimestral - Grupo 2</title>
+    <!-- BOOTSTRAP 4 CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="static/css/main.css">
+    <!-- ICON -->
+    <link rel="icon" href="static/css/sdb.png" type="image/x-icon">
+    <!-- EXTRA -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-xxxxxxxxxxxxx" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #8360c3;
+    background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
+    background: linear-gradient(to right, #2ebf91, #8360c3);
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0; /* Elimina el relleno predeterminado del body */
+}
+
+.jumbotron {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #666464;
+    color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 20px;
+    animation: fadeIn 1s forwards ease-in-out;
+}
+.navbar.animated {
+    background-color: #343a40;
+    padding: 1rem 2rem;
+    border-radius: 0;
+    animation: slideInDown 0.5s ease-in-out;
+}
+.navbar-brand {
+    color: #4c8f32;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 20px;
+}
+
+.navbar-nav .nav-link {
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.3s;
+    border-radius: 0;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e44d26;
+}
+
+.home-btn:hover,
+.about-btn:hover {
+    background-color: #e44d26;
+    border: none;
+}
+
+.form-control {
+    border: 2px solid #28a745;
+    border-radius: 5px;
+}
+
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    border-radius: 5px;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+/********** Expanding Search **********/
+.search {
+  --background: #ffffff;
+  --text-color: #414856;
+  --primary-color: #4f29f0;
+  --border-radius: 10px;
+  --width: 190px;
+  --height: 55px;
+  background: var(--background);
+  width: auto;
+  height: var(--height);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search input[type=text] {
+  position: relative;
+  width: var(--height);
+  height: var(--height);
+  font: 400 16px "Varela Round", sans-serif;
+  color: var(--text-color);
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  padding: 0 0 0 40px;
+  transition: width 0.6s ease;
+  z-index: 10;
+  opacity: 0;
+  cursor: pointer;
+}
+.search input[type=text]:focus {
+  z-index: 0;
+  opacity: 1;
+  width: var(--width);
+}
+.search input[type=text]:focus ~ .symbol::before {
+  width: 0%;
+}
+.search input[type=text]:focus ~ .symbol:after {
+  -webkit-clip-path: inset(0% 0% 0% 100%);
+          clip-path: inset(0% 0% 0% 100%);
+  transition: -webkit-clip-path 0.04s linear 0.105s;
+  transition: clip-path 0.04s linear 0.105s;
+  transition: clip-path 0.04s linear 0.105s, -webkit-clip-path 0.04s linear 0.105s;
+}
+.search input[type=text]:focus ~ .symbol .cloud {
+  top: -30px;
+  left: -30px;
+  transform: translate(0, 0);
+  transition: all 0.6s ease;
+}
+.search input[type=text]:focus ~ .symbol .lens {
+  top: 20px;
+  left: 15px;
+  transform: translate(0, 0);
+  fill: var(--primary-color);
+  transition: top 0.5s ease 0.1s, left 0.5s ease 0.1s, fill 0.3s ease;
+}
+.search .symbol {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search .symbol:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  z-index: -1;
+  transition: width 0.6s ease;
+}
+.search .symbol:after {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  z-index: 1;
+  -webkit-clip-path: inset(0% 0% 0% 0%);
+          clip-path: inset(0% 0% 0% 0%);
+  transition: -webkit-clip-path 0.04s linear 0.225s;
+  transition: clip-path 0.04s linear 0.225s;
+  transition: clip-path 0.04s linear 0.225s, -webkit-clip-path 0.04s linear 0.225s;
+}
+.search .symbol .cloud,
+.search .symbol .lens {
+  position: absolute;
+  fill: #fff;
+  stroke: none;
+  top: 50%;
+  left: 50%;
+}
+.search .symbol .cloud {
+  width: 35px;
+  height: 32px;
+  transform: translate(-50%, -60%);
+  transition: all 0.6s ease;
+}
+.search .symbol .lens {
+  fill: #fff;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+  top: 24px;
+  left: 24px;
+  transition: top 0.3s ease, left 0.3s ease, fill 0.2s ease 0.2s;
+}
+/********** End Expanding Search **********/
+.main-content {
+    background-color: rgb(182, 216, 216); /* Cambia a tu color deseado */
+    padding: 40px;
+    border-radius: 0;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sutil sombra para efecto tridimensional */
+    opacity: 0; /* Inicia con opacidad 0 */
+    transform: translateY(20px); /* Desplaza hacia abajo 20px */
+    animation: fadeInUp 1s forwards ease-in-out; /* Aplica la animación */
+}
+
+.main-content::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid #007bff;
+    margin-top: 20px;
+}
+
+.main-content h2 {
+    text-align: center;
+    color: #007bff; /* Nuevo color para los títulos de sección */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 2em; /* Tamaño del texto del título aumentado */
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+.main-content p {
+    text-align: justify;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 4px; /* Espacio entre párrafos */
+}
+.main-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: block;
+    margin: 20px auto;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.col-md-4 {
+    padding: 20px; /* Aumenta el espacio interno */
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: #d6d87d; /* Color de fondo suave */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 10px; /* Ajusta el margen entre los elementos según tus preferencias */
+    transition: transform 0.3s; /* Efecto de transición al pasar el ratón */
+}
+.col-md-4:hover {
+    transform: scale(1.05); /* Ajusta el factor de escala según tus preferencias */
+}
+p {
+    padding-top: 20px; /* Ajusta la cantidad de espacio superior según tus necesidades */
+    text-align: justify;
+    line-height: 1.6; /* Ajusta la altura de línea para una mejor legibilidad */
+    color: #555;
+}
+.jumbotron p {
+    color: white;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+iframe {
+    display: block;
+    margin: 20px auto; /* Ajusta la cantidad de espacio vertical y horizontal según tus necesidades */
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+    height: 80vh; /* Ajusta la altura según tus necesidades */
+}
+.titulo-animado {
+    overflow: hidden;
+    border-right: 2px solid white; /* Simula el cursor de escritura */
+    white-space: nowrap; /* Evita el salto de línea */
+    margin: 0 auto;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite; /* Combina las animaciones */
+}
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+/* Estilo para el enlace del menú desplegable */
+.navbar-nav .nav-item.dropdown:hover .nav-link {
+  color: #fff; /* Cambia el color del texto al pasar el ratón sobre el enlace del menú desplegable */
+}
+
+/* Estilo para el enlace activo del menú desplegable */
+.navbar-nav .nav-item.dropdown .nav-link.active {
+  background-color: #343a40; /* Cambia el color de fondo del enlace activo del menú desplegable */
+}
+
+/* Estilo para los elementos del menú desplegable */
+.navbar-nav .nav-item.dropdown .dropdown-item {
+  color: #212529; /* Color de texto normal */
+}
+
+/* Estilo para los elementos del menú desplegable al pasar el ratón sobre ellos */
+.navbar-nav .nav-item.dropdown .dropdown-item:hover {
+  background-color: #343a40; /* Cambia el color de fondo al pasar el ratón sobre los elementos del menú desplegable */
+  color: #fff; /* Cambia el color del texto al pasar el ratón sobre los elementos del menú desplegable */
+}
+    /* Estilos personalizados para el carrusel */
+    #miCarrusel {
+      max-width: 800px; /* Ajusta el ancho máximo según tu preferencia */
+      margin: auto; /* Centra el carrusel en la página */
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      height: 400px; /* Ajusta la altura según tu preferencia */
+      object-fit: cover; /* Ajusta el modo de ajuste según tu preferencia */
+    }
+    .video {
+      display: flex;
+      justify-content: center; /* Centrado horizontal */
+      align-items: center; /* Centrado vertical */
+      height: 100vh; /* Ajusta la altura según tus necesidades */
+    }
+    
+    video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: orange;
+    }
+}
+</style>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">Blog de Trabajo Bimestral - Grupo 2</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">Acerca de</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="ept.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cursos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="ept.html">EPT</a>
+              <a class="dropdown-item" href="/matematica">Matemática</a>
+              <a class="dropdown-item" href="/dpcc">DPCC</a>
+              <a class="dropdown-item" href="/cyt">Ciencia y Tecnología</a>
+              <a class="dropdown-item" href="/ccss">Ciencias Sociales</a>
+              <a class="dropdown-item" href="com.html">Comunicación</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="integrantes.html">Integrantes</a>
+          </li>
+          <div class="search">
+            <input type="text" placeholder="Búsqueda" />
+            <div class="symbol">
+              <svg class="cloud">
+                <use xlink:href="#cloud" />
+              </svg>
+              <svg class="lens">
+                <use xlink:href="#lens" />
+              </svg>
+            </div>
+          </div>
+            
+          <!-- SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="cloud">
+              <path d="M31.714,25.543c3.335-2.17,4.27-6.612,2.084-9.922c-1.247-1.884-3.31-3.077-5.575-3.223h-0.021
+            C27.148,6.68,21.624,2.89,15.862,3.931c-3.308,0.597-6.134,2.715-7.618,5.708c-4.763,0.2-8.46,4.194-8.257,8.919
+            c0.202,4.726,4.227,8.392,8.991,8.192h4.873h13.934C27.784,26.751,30.252,26.54,31.714,25.543z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="lens">
+              <path d="M15.656,13.692l-3.257-3.229c2.087-3.079,1.261-7.252-1.845-9.321c-3.106-2.068-7.315-1.25-9.402,1.83
+            s-1.261,7.252,1.845,9.32c1.123,0.748,2.446,1.146,3.799,1.142c1.273-0.016,2.515-0.39,3.583-1.076l3.257,3.229
+            c0.531,0.541,1.404,0.553,1.95,0.025c0.009-0.008,0.018-0.017,0.026-0.025C16.112,15.059,16.131,14.242,15.656,13.692z M2.845,6.631
+            c0.023-2.188,1.832-3.942,4.039-3.918c2.206,0.024,3.976,1.816,3.951,4.004c-0.023,2.171-1.805,3.918-3.995,3.918
+            C4.622,10.623,2.833,8.831,2.845,6.631L2.845,6.631z" />
+            </symbol>
+          </svg>  
+    </nav>
+
+    <div class="container p-4">
+      <section class="container my-5">
+    <div class="main-content">
+      <h2 id="titulo-escritura" class="titulo-animado">Educación Para el Trabajo</h2>
+      <p><strong><em><span style="font-size: 1.5em;"><span style="color: red;">¿Qué es el curso Educación para el trabajo?</span></span></em></strong></p>
+      <p>El área de Educación para el Trabajo tiene por finalidad desarrollar competencias laborales, capacidades y actitudes emprendedoras, que permitan a los estudiantes insertarse en el mercado laboral, como trabajador dependiente o generar su propio puesto de trabajo creando su microempresa, en el marco de una cultura exportadora y emprendedora.</p>
+      <p>Una actividad laboral se aprende haciendo y en situaciones concretas de trabajo, que se enmarquen en las demandas de formación del sector productivo y en los intereses y aptitudes vocacionales de los estudiantes. Por tal razón, es importante orientar adecuadamente a nuestros estudiantes a desarrollar intereses y aptitudes vocacionales, competencias laborales y socio emocionales para la empleabilidad; que le permitan desempeñarse en uno o más puestos de trabajo de una especialidad ocupacional, y capacidades emprendedoras que le permitan crear su propio puesto de trabajo.</p>
+      <img src="static/css/ept.jpg" alt="Lenguajes de Programación" width="1000" height="900">
+      <p>La Educación para el Trabajo se caracteriza por incorporar en el proceso formativo del estudiante un enfoque activo, reflexivo y vivencial. A través de la práctica, se fomentan procesos de producción y aplicación de conocimientos, brindando a los estudiantes la oportunidad de aprender de manera significativa. La participación en estas actividades no solo contribuye a la adquisición de conocimientos, sino que también empodera al individuo, convirtiéndolo en un agente de cambio.</p>
+      <img src="static/css/EPT.png" alt="Paradigmas de programación" style="background-color: white; padding: 10px;" width="700" height="600">
+      <p>Más allá de la calidad productiva de la actividad laboral, el enfoque principal recae en asegurar la calidad del individuo, reforzando su identidad personal y propiciando su reconocimiento en la sociedad. El objetivo último de la Educación para el Trabajo es consolidar la toma de conciencia de los individuos, promoviendo un desarrollo integral que va más allá de las habilidades laborales.</p>
+      <p>A continuación, haremos un repaso de los distintos proyectos que hemos realizado en el transcurso de estos cuatro bimestres de trabajo, para que puedas apreciar la diversidad y complejidad de las tareas que hemos abordado. Desde el inicio de nuestro viaje en el mundo académico, nos hemos comprometido con proyectos que abarcan una variedad de temas y habilidades.</p>
+      <!-- Espacio para imágenes y resúmenes de lenguajes -->
+      <div class="row">
+        <div class="col-md-4">
+            <img src="static/css/shafue.png" alt="HTML">
+            <p><strong>I Bimestre - Exposición del tema "La Exposición":</strong> En este bimestre, nos enfocamos en un proyecto sobre exposiciones. Analizamos un texto detallado sobre el tema, creamos un organizador visual para entender mejor la información y luego presentamos el tema en clase. Utilizamos recursos visuales y ejemplos para hacer la presentación interesante. Fue una oportunidad práctica para mejorar nuestras habilidades de presentación oral y compartir conocimientos con nuestros compañeros. Además, destacamos la importancia de la participación activa de la audiencia en estas experiencias, generando un diálogo enriquecedor en clase. Esta práctica no solo fortaleció nuestras habilidades de presentación, sino que también profundizó nuestra comprensión sobre la influencia cultural de las exposiciones.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="static/css/qcabronteo.jpg" alt="CSS">
+            <p><strong>II Bimestre - Proyecto de Emprendimiento "Juguería Casera":</strong> En este  segundo bimestre, nos involucramos en un proyecto simulado de una pequeña empresa de jugos, centrado en el desarrollo de habilidades de marketing. Creamos perfiles en redes sociales, diseñamos materiales publicitarios y presentamos nuestros productos en una competencia. El equipo destacado tuvo la oportunidad de llevar su juguería ficticia al siguiente nivel durante el "Día del Logro", consolidando nuestras habilidades empresariales y creativas.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="static/css/cheeeetantehombe.jpg" alt="JavaScript">
+            <img src="static/css/bordado.webp" alt="JavaScript" style="height: 350px; width: auto;">
+            <p><strong>III Bimestre - Realización de libretas y álbumes con papel reciclado:</strong> Durante el tercer bimestre, nos embarcamos en un proyecto apasionante centrado en la sostenibilidad: la creación de libretas y álbumes utilizando papel reciclado. Este proyecto tenía como objetivo principal fomentar prácticas sostenibles al reducir residuos y promover la reutilización de recursos. A través de la recopilación y reciclaje de papel, cada estudiante contribuyó a la creación de pasta de papel reciclado, que luego se transformó en hojas para nuestras libretas y álbumes. Más allá de desarrollar habilidades manuales y técnicas de encuadernación, la fase de decoración permitió a cada estudiante expresar su creatividad única en el diseño de las portadas y páginas.</p>
+            <img src="static/css/gogo.jpg" alt="JavaScript">
+        </div>
+        <div class="col-md-4">
+            <img src="static/css/pepe.jpg" alt="Python">
+            <img src="static/css/pepe1.jpg" alt="Python">
+            <p><strong>IV Bimestre - Realización de bordados en bastidor circular:</strong> En este cuarto bimestre, estamos sumergidos en un proyecto estimulante centrado en la realización de bordados en bastidor circular. Con el objetivo de desarrollar habilidades artísticas, nos adentramos en el mundo detallado del bordado, explorando diversas técnicas que van desde puntadas básicas hasta métodos más avanzados. La elección de diseños personales y la cuidadosa selección de materiales nos permitieron no solo perfeccionar nuestras habilidades, sino también expresar individualmente nuestra creatividad a través de esta forma de arte tradicional.</p>
+        </div>
+    </div>
+      <p>Ya hecho este breve repaso, pasaremos a hablar única y totalmente de todo lo que hemos realizado este último bimestre. Desde la parte teórica que se encuentra detrás de realizar un bordado hasta nuestros bordados junto con sus respectivos procedimientos.</p>
+      <h2 style="color: #4CAF50; font-family: 'Arial', sans-serif; text-align: center; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; margin-bottom: 10px; padding-top: 15px; margin-top: 20px;">IV Bimestre - Explorando el Arte del Bordado</h2>
+      <p><strong><span style="font-size: 1.75em;"><span style="color: rgb(18, 105, 79);">¿Qué es el bordado?</span></span></strong></p>
+      <p>El bordado es una forma de arte textil que implica la decoración de una tela utilizando agujas e hilos, aunque también se pueden utilizar otros materiales como lentejuelas, cuentas o cintas. Consiste en crear patrones, diseños o imágenes en la superficie de la tela mediante la aplicación de puntadas controladas.</p>
+      <p>En el bordado, se utilizan diversas técnicas de costura para crear efectos visuales y texturales. Las puntadas pueden variar desde las simples y clásicas, como la puntada recta y el punto de cruz, hasta técnicas más complejas como el bordado de cinta, el punto de festón, o incluso el bordado a máquina. Este arte se ha practicado en todo el mundo y a lo largo de la historia, tanto con fines decorativos como funcionales, como en la elaboración de prendas de vestir o textiles para el hogar.</p>
+      <p>En nuestro caso, nos adentraremos en el fascinante mundo del bordado con hilo, especialmente enfocándonos en el uso de bastidores circulares. Este tipo de bastidor proporciona una superficie tensa y controlada, ideal para ejecutar puntadas precisas y lograr detalles intrincados en nuestros bordados.</p>
+      <div id="miCarrusel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="static/css/bordao.webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="static/css/curso-bordado.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="static/css/flores.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="static/css/bastdorcircular.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="static/css/4_bordados_con_lentejuelas_y_mostacillas.avif" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="static/css/bordadoconcnta.jpg" class="d-block w-100" alt="...">
+        </div>
+        </div>
+    <a class="carousel-control-prev" href="#miCarrusel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#miCarrusel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+  <p><strong><span style="font-size: 1.75em;"><span style="color: rgb(18, 105, 79);">¿Para qué sirve el bordado?</span></span></strong></p>
+  <p>El bordado sirve como una expresión artística y decorativa en la que se utilizan agujas e hilos para crear patrones y diseños sobre telas. Esta práctica tiene aplicaciones tanto funcionales como estéticas.</p>
+  <p>En el ámbito funcional, el bordado puede utilizarse para reforzar costuras, reparar prendas o incluso agregar etiquetas a artículos textiles. Desde un punto de vista estético, el bordado es una forma de arte que permite la personalización y embellecimiento de prendas de vestir, accesorios y textiles para el hogar, ofreciendo una manera única de expresar creatividad y tradición.</p>
+  <p>Además de sus aplicaciones funcionales y estéticas, el bordado también sirve como un medio para transmitir la cultura y la historia. A lo largo del tiempo, diferentes culturas han desarrollado estilos distintivos de bordado, utilizando patrones y colores específicos que reflejan sus tradiciones y narrativas únicas. Esta forma de expresión artística no solo embellece los objetos cotidianos, sino que también actúa como un portador de identidad cultural.</p>
+  <p>En el contexto contemporáneo, el bordado ha experimentado un renacimiento como una forma de arte moderna y expresión individual. Artistas y diseñadores han llevado el bordado más allá de la simple función decorativa, explorando nuevas técnicas, combinando materiales inusuales y abordando temas sociales y personales a través de sus creaciones. Esta evolución resalta la versatilidad y la relevancia continua del bordado como un medio artístico dinámico y significativo.</p>
+  <img src="static/css/paraqsirveelbordado.png" alt="Para qué sirve el bordado">
+  <p><strong><span style="font-size: 1.75em;"><span style="color: rgb(18, 105, 79);">¿Qué es el bastidor?</span></span></strong></p>
+  <p>El bastidor es una herramienta fundamental en el arte del bordado. Se trata de un aro circular, generalmente de madera o plástico, que se utiliza para sostener la tela de manera tensa y uniforme durante el proceso de bordado. El bastidor consta de dos aros concéntricos, uno más grande que el otro, que se pueden ajustar y asegurar mediante un tornillo o una sujeción similar.</p>
+  <img src="static/css/bastidorcircular.jpg" class="d-block w-100" alt="...">
+  <p><strong><span style="font-size: 1.75em;"><span style="color: rgb(18, 105, 79);">¿Para qué sirve el bastidor?</span></span></strong></p>
+  <p>El propósito principal del bastidor es mantener la tela firme, evitando arrugas y pliegues que podrían dificultar el trabajo de bordado. Al tensar la tela en el bastidor, se crea una superficie plana y uniforme sobre la cual se pueden realizar las puntadas con mayor precisión. Además, el bastidor facilita la movilidad de la tela, permitiendo al bordador acceder fácilmente a diferentes áreas sin tener que manipular toda la pieza.</p>
+  <p>El uso del bastidor no solo mejora la calidad del bordado, sino que también facilita el proceso y hace que la experiencia sea más cómoda para el artista. Este accesorio es esencial para mantener la integridad del diseño y lograr resultados óptimos en la obra final.</p>
+  <img src="static/css/usobastidor.jpg" class="d-block w-100" alt="...">
+  <p><strong><span style="font-size: 2.55em;"><span style="color: rgb(44, 18, 105);"><em>Nuestros bordados (primer trabajo):</em></span></span></strong></p>
+  <p><strong><span style="font-size: 1.85em;"><span style="color: rgb(23, 18, 95);">César Calle:</span></span></strong></p>
+  <p>¡Hola, soy César Calle, el diseñador y desarrollador de este sitio, y también uno de los entusiastas integrantes del grupo! A lo largo de mi participación, he explorado el fascinante mundo del bordado, compartiendo mi evolución en esta habilidad. Desde mis primeros intentos hasta la creación de un cojín adornado con dos hermosos bordados de flores, he experimentado un emocionante proceso de aprendizaje y mejora. Estoy encantado de compartir mi progreso y entusiasmo por el bordado con todos ustedes. ¡Espero que disfruten de esta travesía creativa tanto como yo!</p>
+  <p>Todo comienza con el diseño de la flor para poder dibujar en la tela, yo, personalmente, usé CorelDraw, pues me pareció la mejor opción para hacer este dibujo:</p>
+  <img src="static/css/image.png" alt="Python">
+  <img src="static/css/image1.png" alt="Python">
+  <p>Posteriormente, realicé una impresión a la imagen y pasé el dibujo a la tela. Luego de realizar los bordados, pude hacer el siguiente cojín:</p>
+  <img src="static/css/image2.jpg" alt="Python">
+  <img src="static/css/image3.jpg" alt="Python">
+  <p>Cabe recalcar que, la segunda flor del cojín, la dibujé sin necesidad de crear un modelo en CorelDraw, pues, fue libre.</p>
+  <p>Para buscar perfeccionar aún más mis habilidades en el bordado, realicé una pequeña y sencilla flor para poder prácticar un poco más. A continuación, mostraté como fui realizando esta última flor:</p>
+  <p>En primer lugar, comienzo seleccionando la tela adecuada para realizar el bordado:</p>
+  <img src="static/css/image4.jpg" alt="Python">
+  <p>Luego, lo siguiente que hice fue hacer el dibujo, el cual como ya mencioné anteriormente no fue tan complicado, pues busqué hacerlo lo más simple posible:</p>
+  <img src="static/css/image5.jpg" alt="Python">
+  <p>Posteriormente, ya para comenzar a bordar, acomodo adecuadamente la tela en el bastidor circular:</p>
+  <img src="static/css/image6.jpg" alt="Python">
+  <p>Ahora, les mostraré como fui avanzando poco a poco el bordado de esta pequeña flor hasta terminarlo:</p>
+  <img src="static/css/image7.jpg" alt="Python">
+  <img src="static/css/image8.jpg" alt="Python">
+  <img src="static/css/image9.jpg" alt="Python">
+  <img src="static/css/image10.jpg" alt="Python">
+  <p>Finalmente, acabada ya la realización del bordado, procedo a retirar la tela del bastidor, y con eso pues ya estaría terminado.</p>
+  <img src="static/css/image11.jpg" alt="Python">
+  <p><strong><span style="font-size: 1.85em;"><span style="color: rgb(23, 18, 95);">David Chanduvi:</span></span></strong></p>
+  <p>¡Hola, soy David Chanduvi, parte activa de este grupo y entusiasta participante en el fascinante mundo del bordado! A lo largo de esta experiencia, he experimentado un crecimiento notable en mis habilidades de bordado, al igual que mi compañero César. Estoy emocionado de compartir mi progreso y mi pasión por el bordado con todos ustedes. ¡Espero que disfruten descubriendo este viaje creativo junto a mí!</p>
+  <p>Bueno, yo quiero mostrarles como fui poco a poco avanzando mi primera flor hasta tenerla casi terminada.</p>
+  <p>En primer lugar, ubico los materiales necesarios para poder realizar el bordado:</p>
+  <img src="static/css/image12.jpg" alt="Python">
+  <p>Ahora, voy poco a poco avanzando el bordado en partes:</p>
+  <img src="static/css/image13.jpg" alt="Python">
+  <img src="static/css/image14.jpg" alt="Python">
+  <img src="static/css/image15.jpg" alt="Python">
+  <img src="static/css/image16.jpg" alt="Python">
+  <p>Y ese sería el avance de mi flor, honestamente creo que me ha servido bastante para ir progresando en este gran arte como es el bordado.</p>
+  <p><strong><span style="font-size: 1.85em;"><span style="color: rgb(23, 18, 95);">Ángello Yarlequé:</span></span></strong></p>
+  <p>Soy el alumno Angello David Yarlequé Puelles, y mostraré mis avances de cada semana del bordado de mi flor. La primera semana empecé dibujando la flor para empezar a bordar.</p>
+  <img src="static/css/image17.jpg" alt="Python">
+  <p>Las siguientes semanas realicé los puntos aprendidos para el bordado, empecé a bordar por el tallo, luego la flor y al final las plantas.</p>
+  <img src="static/css/image18.jpg" alt="Python">
+  <img src="static/css/image19.jpg" alt="Python">
+  <img src="static/css/image20.jpg" alt="Python">
+  <p>Y para finalizar en estas ultimas semanas le puse bordes a toda la flor para un mejor diseño.</p>
+  <p>Por último, les tengo una pequeña video-evidencia:</p>
+  <div class="video">
+  <video controls>
+    <source src="static/css/VID_20231114_221420.mp4" type="video/mp4">
+  </video>
+  </div>
+  <p><strong><span style="font-size: 2.55em;"><span style="color: rgb(44, 18, 105);"><em>Nuestros bordados (segundo trabajo):</em></span></span></strong></p>
+  <p><strong><span style="font-size: 1.85em;"><span style="color: rgb(23, 18, 95);">César Calle:</span></span></strong></p>
+  <p>Para este segundo trabajo opté por realizar un árbol de navidad simple, pues la temática de este trabajo es navideña. El dibujo lo hice yo sin guiarme de ninguna imagen, sin más, procederé a adjuntarles las imágenes que detallan como fui realizando este segundo bordado:</p>
+  <img src="static/css/de4fd893-c19f-49af-8796-349093f2b334.jpg" alt="Python">
+  <p>Esta es la tela que elegí utilizar, posteriormente realicé el dibujo:</p>
+  <img src="static/css/8446ae74-9fb0-412c-93d9-db710f5d9bad.jpg" alt="Python">
+  <p>Una vez hecho esto, era hora de acomodar el dibujo en el bastidor para comenzar a bordar:</p>
+  <img src="static/css/4369cfe2-ce0c-44d9-9685-a7da8604f69a.jpg" alt="Python">
+  <p>Ya hecho todo esto, fui avanzando poco a poco mi bordado desde los contornos y rellenos hasta el resultado final, adjunto las fotografías de mis avances:</p>
+  <img src="static/css/9285add3-1fc3-4449-b098-8a6f95a17152.jpg" alt="Python">
+  <img src="static/css/7b29996a-95c4-4bcd-8f11-e7b350280c08.jpg" alt="Python">
+  <img src="static/css/aff0cd89-d73e-41aa-8a26-0f7314a504da.jpg" alt="Python">
+  <img src="static/css/a7a92bef-0c42-4309-81b5-fa81e7bab801.jpg" alt="Python">
+  <img src="static/css/22e12cfc-b275-4fe6-8b41-240364107607.jpg" alt="Python">
+  <img src="static/css/e5e50696-2247-4b4b-b16b-29a3c130e934.jpg" alt="Python">
+  <img src="static/css/cfa5de1a-6675-4fe1-b150-63a0b8a0ce4c.jpg" alt="Python">
+  <img src="static/css/230db4d5-1eb4-4f9a-8c25-0192109c83e9.jpg" alt="Python">
+  <p><strong><span style="font-size: 1.85em;"><span style="color: rgb(23, 18, 95);">Ángello Yarlequé:</span></span></strong></p>
+  <p>Hola, para esté trabajo yo realicé uno de los modelos que se nos proporcionó, no logré terminarlo, pero a continuación adjunto mis avances:</p>
+  <img src="static/css/rn_image_picker_lib_temp_96e83903-b4f5-4f52-b160-6aa669007dd3.jpg" alt="Python">
+  <p>Como pueden ver, este es el dibujo del modelo de bordar que elegí, posteriormente, comencé a bordar una pequeña parte, luego de eso, tristemente no pude acabar de bordar más, ese sería todo mi avance.</p>
+  <img src="static/css/rn_image_picker_lib_temp_b4f53498-c003-409a-9cd1-fef46bf5bf97.jpg" alt="Python">
+  <p><strong><span style="font-size: 1.85em;"><span style="color: rgb(23, 18, 95);">David Chanduvi:</span></span></strong></p>
+  <p>Hola, soy David Chanduvi, en mi caso, yo realicé un archivo de word donde explico detalladamente mi avance a lo largo de estas semanas, a continuación, lo adjunto:</p>
+  <a href="Bordado Chanduvi Madrid.docx" download>Progreso semanal DChanduvi (DOCX)</a>
+    </div>
+    </section>    
+    </div>
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>Resumen</h6>
+          <p class="text-justify">En el cálido rincón virtual del Grupo 2, te damos la bienvenida a nuestro Blog Bimestral Académico, un espacio donde florece el conocimiento y se entrelazan nuestras victorias educativas. A lo largo de este bimestre, hemos cultivado logros excepcionales en cada curso, desde las fascinantes travesías matemáticas hasta las reveladoras exploraciones en el vasto mundo de las ciencias.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Categorias</h6>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Acerca de</a></li>
+            <li><a href="ept.html">Cursos</a></li>
+            <li><a href="integrantes.html">Integrantes</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Cursos</h6>
+          <ul class="footer-links">
+            <li><a href="/matematica">Matemática</a></li>
+            <li><a href="/cyt">Ciencia y Tecnología</a></li>
+            <li><a href="ept.html">EPT</a></li>
+            <li><a href="/ccss">Ciencias Sociales</a></li>
+            <li><a href="/dpcc">DPCC</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2023 Todos los derechos reservados por 
+       <a href="/">Blog de Trabajo Bimestral - Grupo 2</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+</footer>
+
+    <!-- SCRIPTS -->
+    <script src="{{url_for('static', filename='scripts/nuevoscript.js')}}"></script>
+  </body>
+</html>

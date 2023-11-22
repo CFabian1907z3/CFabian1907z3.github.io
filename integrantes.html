@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog de Trabajo Bimestral - Grupo 2</title>
+    <!-- BOOTSTRAP 4 CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="static/css/main.css">
+    <!-- ICON -->
+    <link rel="icon" href="static/css/sdb.png" type="image/x-icon">
+    <!-- EXTRA -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-xxxxxxxxxxxxx" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #8360c3;
+    background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
+    background: linear-gradient(to right, #2ebf91, #8360c3);
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0; /* Elimina el relleno predeterminado del body */
+}
+
+.jumbotron {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #666464;
+    color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 20px;
+    animation: fadeIn 1s forwards ease-in-out;
+}
+.navbar.animated {
+    background-color: #343a40;
+    padding: 1rem 2rem;
+    border-radius: 0;
+    animation: slideInDown 0.5s ease-in-out;
+}
+.navbar-brand {
+    color: #4c8f32;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 20px;
+}
+
+.navbar-nav .nav-link {
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.3s;
+    border-radius: 0;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e44d26;
+}
+
+.home-btn:hover,
+.about-btn:hover {
+    background-color: #e44d26;
+    border: none;
+}
+
+.form-control {
+    border: 2px solid #28a745;
+    border-radius: 5px;
+}
+
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    border-radius: 5px;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+/********** Expanding Search **********/
+.search {
+  --background: #ffffff;
+  --text-color: #414856;
+  --primary-color: #4f29f0;
+  --border-radius: 10px;
+  --width: 190px;
+  --height: 55px;
+  background: var(--background);
+  width: auto;
+  height: var(--height);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search input[type=text] {
+  position: relative;
+  width: var(--height);
+  height: var(--height);
+  font: 400 16px "Varela Round", sans-serif;
+  color: var(--text-color);
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  padding: 0 0 0 40px;
+  transition: width 0.6s ease;
+  z-index: 10;
+  opacity: 0;
+  cursor: pointer;
+}
+.search input[type=text]:focus {
+  z-index: 0;
+  opacity: 1;
+  width: var(--width);
+}
+.search input[type=text]:focus ~ .symbol::before {
+  width: 0%;
+}
+.search input[type=text]:focus ~ .symbol:after {
+  -webkit-clip-path: inset(0% 0% 0% 100%);
+          clip-path: inset(0% 0% 0% 100%);
+  transition: -webkit-clip-path 0.04s linear 0.105s;
+  transition: clip-path 0.04s linear 0.105s;
+  transition: clip-path 0.04s linear 0.105s, -webkit-clip-path 0.04s linear 0.105s;
+}
+.search input[type=text]:focus ~ .symbol .cloud {
+  top: -30px;
+  left: -30px;
+  transform: translate(0, 0);
+  transition: all 0.6s ease;
+}
+.search input[type=text]:focus ~ .symbol .lens {
+  top: 20px;
+  left: 15px;
+  transform: translate(0, 0);
+  fill: var(--primary-color);
+  transition: top 0.5s ease 0.1s, left 0.5s ease 0.1s, fill 0.3s ease;
+}
+.search .symbol {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search .symbol:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  z-index: -1;
+  transition: width 0.6s ease;
+}
+.search .symbol:after {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  z-index: 1;
+  -webkit-clip-path: inset(0% 0% 0% 0%);
+          clip-path: inset(0% 0% 0% 0%);
+  transition: -webkit-clip-path 0.04s linear 0.225s;
+  transition: clip-path 0.04s linear 0.225s;
+  transition: clip-path 0.04s linear 0.225s, -webkit-clip-path 0.04s linear 0.225s;
+}
+.search .symbol .cloud,
+.search .symbol .lens {
+  position: absolute;
+  fill: #fff;
+  stroke: none;
+  top: 50%;
+  left: 50%;
+}
+.search .symbol .cloud {
+  width: 35px;
+  height: 32px;
+  transform: translate(-50%, -60%);
+  transition: all 0.6s ease;
+}
+.search .symbol .lens {
+  fill: #fff;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+  top: 24px;
+  left: 24px;
+  transition: top 0.3s ease, left 0.3s ease, fill 0.2s ease 0.2s;
+}
+/********** End Expanding Search **********/
+.main-content {
+    background-color: rgb(182, 216, 216); /* Cambia a tu color deseado */
+    padding: 40px;
+    border-radius: 0;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sutil sombra para efecto tridimensional */
+    opacity: 0; /* Inicia con opacidad 0 */
+    transform: translateY(20px); /* Desplaza hacia abajo 20px */
+    animation: fadeInUp 1s forwards ease-in-out; /* Aplica la animación */
+}
+
+.main-content::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid #007bff;
+    margin-top: 20px;
+}
+
+.main-content h2 {
+    text-align: center;
+    color: #007bff; /* Nuevo color para los títulos de sección */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 2em; /* Tamaño del texto del título aumentado */
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+.main-content p {
+    text-align: justify;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 4px; /* Espacio entre párrafos */
+}
+.main-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: block;
+    margin: 20px auto;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.col-md-4 {
+    padding: 20px; /* Aumenta el espacio interno */
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: #d6d87d; /* Color de fondo suave */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 10px; /* Ajusta el margen entre los elementos según tus preferencias */
+    transition: transform 0.3s; /* Efecto de transición al pasar el ratón */
+}
+.col-md-4:hover {
+    transform: scale(1.05); /* Ajusta el factor de escala según tus preferencias */
+}
+p {
+    padding-top: 20px; /* Ajusta la cantidad de espacio superior según tus necesidades */
+    text-align: justify;
+    line-height: 1.6; /* Ajusta la altura de línea para una mejor legibilidad */
+    color: #555;
+}
+.jumbotron p {
+    color: white;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+iframe {
+    display: block;
+    margin: 20px auto; /* Ajusta la cantidad de espacio vertical y horizontal según tus necesidades */
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+    height: 80vh; /* Ajusta la altura según tus necesidades */
+}
+.titulo-animado {
+    overflow: hidden;
+    border-right: 2px solid white; /* Simula el cursor de escritura */
+    white-space: nowrap; /* Evita el salto de línea */
+    margin: 0 auto;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite; /* Combina las animaciones */
+}
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+/* Estilo para el enlace del menú desplegable */
+.navbar-nav .nav-item.dropdown:hover .nav-link {
+  color: #fff; /* Cambia el color del texto al pasar el ratón sobre el enlace del menú desplegable */
+}
+
+/* Estilo para el enlace activo del menú desplegable */
+.navbar-nav .nav-item.dropdown .nav-link.active {
+  background-color: #343a40; /* Cambia el color de fondo del enlace activo del menú desplegable */
+}
+
+/* Estilo para los elementos del menú desplegable */
+.navbar-nav .nav-item.dropdown .dropdown-item {
+  color: #212529; /* Color de texto normal */
+}
+
+/* Estilo para los elementos del menú desplegable al pasar el ratón sobre ellos */
+.navbar-nav .nav-item.dropdown .dropdown-item:hover {
+  background-color: #343a40; /* Cambia el color de fondo al pasar el ratón sobre los elementos del menú desplegable */
+  color: #fff; /* Cambia el color del texto al pasar el ratón sobre los elementos del menú desplegable */
+}
+    /* Estilos personalizados para el carrusel */
+    #miCarrusel {
+      max-width: 800px; /* Ajusta el ancho máximo según tu preferencia */
+      margin: auto; /* Centra el carrusel en la página */
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      height: 400px; /* Ajusta la altura según tu preferencia */
+      object-fit: cover; /* Ajusta el modo de ajuste según tu preferencia */
+    }
+    .video {
+      display: flex;
+      justify-content: center; /* Centrado horizontal */
+      align-items: center; /* Centrado vertical */
+      height: 100vh; /* Ajusta la altura según tus necesidades */
+    }
+    
+    video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: orange;
+    }
+}
+</style>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">Blog de Trabajo Bimestral - Grupo 2</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">Acerca de</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="ept.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cursos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="ept.html">EPT</a>
+              <a class="dropdown-item" href="/matematica">Matemática</a>
+              <a class="dropdown-item" href="/dpcc">DPCC</a>
+              <a class="dropdown-item" href="/cyt">Ciencia y Tecnología</a>
+              <a class="dropdown-item" href="/ccss">Ciencias Sociales</a>
+              <a class="dropdown-item" href="com.html">Comunicación</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="integrantes.html">Integrantes</a>
+          </li>
+          <div class="search">
+            <input type="text" placeholder="Búsqueda" />
+            <div class="symbol">
+              <svg class="cloud">
+                <use xlink:href="#cloud" />
+              </svg>
+              <svg class="lens">
+                <use xlink:href="#lens" />
+              </svg>
+            </div>
+          </div>
+            
+          <!-- SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="cloud">
+              <path d="M31.714,25.543c3.335-2.17,4.27-6.612,2.084-9.922c-1.247-1.884-3.31-3.077-5.575-3.223h-0.021
+            C27.148,6.68,21.624,2.89,15.862,3.931c-3.308,0.597-6.134,2.715-7.618,5.708c-4.763,0.2-8.46,4.194-8.257,8.919
+            c0.202,4.726,4.227,8.392,8.991,8.192h4.873h13.934C27.784,26.751,30.252,26.54,31.714,25.543z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="lens">
+              <path d="M15.656,13.692l-3.257-3.229c2.087-3.079,1.261-7.252-1.845-9.321c-3.106-2.068-7.315-1.25-9.402,1.83
+            s-1.261,7.252,1.845,9.32c1.123,0.748,2.446,1.146,3.799,1.142c1.273-0.016,2.515-0.39,3.583-1.076l3.257,3.229
+            c0.531,0.541,1.404,0.553,1.95,0.025c0.009-0.008,0.018-0.017,0.026-0.025C16.112,15.059,16.131,14.242,15.656,13.692z M2.845,6.631
+            c0.023-2.188,1.832-3.942,4.039-3.918c2.206,0.024,3.976,1.816,3.951,4.004c-0.023,2.171-1.805,3.918-3.995,3.918
+            C4.622,10.623,2.833,8.831,2.845,6.631L2.845,6.631z" />
+            </symbol>
+          </svg>  
+    </nav>
+
+    <div class="container p-4">
+    	<h1>Próximamente</h1>
+    </div>
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>Resumen</h6>
+          <p class="text-justify">En el cálido rincón virtual del Grupo 2, te damos la bienvenida a nuestro Blog Bimestral Académico, un espacio donde florece el conocimiento y se entrelazan nuestras victorias educativas. A lo largo de este bimestre, hemos cultivado logros excepcionales en cada curso, desde las fascinantes travesías matemáticas hasta las reveladoras exploraciones en el vasto mundo de las ciencias.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Categorias</h6>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Acerca de</a></li>
+            <li><a href="ept.html">Cursos</a></li>
+            <li><a href="integrantes.html">Integrantes</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Cursos</h6>
+          <ul class="footer-links">
+            <li><a href="/matematica">Matemática</a></li>
+            <li><a href="/cyt">Ciencia y Tecnología</a></li>
+            <li><a href="ept.html">EPT</a></li>
+            <li><a href="/ccss">Ciencias Sociales</a></li>
+            <li><a href="/dpcc">DPCC</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2023 Todos los derechos reservados por 
+       <a href="/">Blog de Trabajo Bimestral - Grupo 2</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+</footer>
+
+    <!-- SCRIPTS -->
+    <script src="{{url_for('static', filename='scripts/nuevoscript.js')}}"></script>
+  </body>
+</html>
+
