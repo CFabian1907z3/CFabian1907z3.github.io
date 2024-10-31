@@ -1,0 +1,548 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto; /* Espacio alrededor de la imagen */
+}
+
+/* Ajuste de márgenes entre imágenes y texto */
+img + p, 
+img + h1, 
+img + h2, 
+img + h3, 
+img + h4, 
+img + h5, 
+img + h6 {
+    margin-top: 20px; /* Espacio entre la imagen y el siguiente bloque de texto */
+}
+
+p + img, 
+h1 + img, 
+h2 + img, 
+h3 + img, 
+h4 + img, 
+h5 + img, 
+h6 + img {
+    margin-bottom: 20px; /* Espacio entre el texto y la imagen que viene después */
+}
+
+.bg-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Asegura que la imagen cubra completamente el área */
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilo general para los archivos adjuntos */
+.file-attachment {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #3498db; /* Color del borde */
+    border-radius: 8px;
+    background-color: #ecf0f1; /* Fondo suave */
+    color: #2c3e50; /* Color del texto */
+    font-size: 1rem;
+    text-align: center;
+    margin: 20px auto; /* Distancia respecto a otros elementos */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Efecto de transición */
+    text-decoration: none; /* Sin subrayado en los enlaces */
+}
+
+/* Efecto hover para mejorar la interacción */
+.file-attachment:hover {
+    background-color: #3498db; /* Cambio de fondo al pasar el mouse */
+    color: white; /* Cambia el color del texto */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+}
+
+/* Ajuste de márgenes para que mantengan distancia con el texto */
+p + .file-attachment, 
+h1 + .file-attachment, 
+h2 + .file-attachment, 
+h3 + .file-attachment, 
+h4 + .file-attachment, 
+h5 + .file-attachment, 
+h6 + .file-attachment {
+    margin-top: 20px; /* Distancia entre el archivo y el texto superior */
+}
+
+.file-attachment + p, 
+.file-attachment + h1, 
+.file-attachment + h2, 
+.file-attachment + h3, 
+.file-attachment + h4, 
+.file-attachment + h5, 
+.file-attachment + h6 {
+    margin-bottom: 20px; /* Distancia entre el archivo y el texto inferior */
+}
+
+/* Estilo general para el contenedor del equipo */
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los miembros del equipo */
+    justify-content: space-between; /* Alinea los elementos de forma que se distribuya el espacio */
+}
+
+/* Estilo individual para cada miembro */
+.member {
+    flex: 1 1 calc(33.333% - 20px); /* Asegura que haya 3 miembros por fila, ajustando para el margen */
+    padding: 20px;
+    border: 2px solid #3498db; /* Borde estilizado */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #ecf0f1; /* Fondo suave */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar los divs */
+    margin-bottom: 20px; /* Separación con el siguiente div */
+    text-align: center; /* Centra el contenido dentro del div */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de transición */
+}
+
+/* Efecto hover para los miembros */
+.member:hover {
+    transform: translateY(-5px); /* Efecto de movimiento hacia arriba al pasar el mouse */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más marcada */
+}
+
+/* Estilo para los títulos y descripciones de los miembros */
+.member h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.member p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+/* Espaciado y estilo para los archivos adjuntos */
+.file-attachment {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #3498db;
+    text-decoration: none;
+    margin: 10px 5px; /* Espaciado entre los archivos adjuntos */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-attachment:hover {
+    background-color: #3498db;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .member {
+        flex: 1 1 calc(50% - 20px); /* Dos miembros por fila en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .member {
+        flex: 1 1 100%; /* Un miembro por fila en pantallas muy pequeñas */
+    }
+}/* Estilo general para el contenedor del equipo */
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los miembros del equipo */
+    justify-content: space-between; /* Alinea los elementos de forma que se distribuya el espacio */
+}
+
+/* Estilo individual para cada miembro */
+.member {
+    flex: 1 1 calc(33.333% - 20px); /* Asegura que haya 3 miembros por fila, ajustando para el margen */
+    padding: 20px;
+    border: 2px solid #3498db; /* Borde estilizado */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #ecf0f1; /* Fondo suave */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar los divs */
+    margin-bottom: 20px; /* Separación con el siguiente div */
+    text-align: center; /* Centra el contenido dentro del div */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de transición */
+}
+
+/* Efecto hover para los miembros */
+.member:hover {
+    transform: translateY(-5px); /* Efecto de movimiento hacia arriba al pasar el mouse */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más marcada */
+}
+
+/* Estilo para los títulos y descripciones de los miembros */
+.member h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.member p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+/* Espaciado y estilo para los archivos adjuntos */
+.file-attachment {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #3498db;
+    text-decoration: none;
+    margin: 10px 5px; /* Espaciado entre los archivos adjuntos */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-attachment:hover {
+    background-color: #3498db;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .member {
+        flex: 1 1 calc(50% - 20px); /* Dos miembros por fila en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .member {
+        flex: 1 1 100%; /* Un miembro por fila en pantallas muy pequeñas */
+    }
+}
+
+body {
+    background: #ffe259;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-image: url(fondomenestraactualizado.jpg); /* Cambia la ruta a tu imagen */
+    background-size: cover; /* Hace que la imagen cubra todo el área */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: rgb(255, 255, 255);
+    padding: 60px 20px; /* Espaciado vertical */
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.nav__title {
+    font-size: 2.5rem; /* Tamaño de fuente del logo */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    color:rgb(152, 143, 202) 
+}
+
+.hero__title {
+    font-size: 3rem; /* Tamaño de fuente más grande para el título principal */
+    margin-bottom: 15px; /* Espacio debajo del título principal */
+}
+
+.hero__paragraph {
+    font-size: 1.5rem; /* Tamaño de fuente más grande para el párrafo */
+    font-weight: 300;
+    max-width: 800px; /* Ancho máximo para mejorar la legibilidad */
+    margin: 0 auto; /* Centrando el párrafo */
+}
+
+/* Estilos para el contenedor principal */
+.hero__container {
+    background: #EC6F66;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F3A183, #EC6F66);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F3A183, #EC6F66); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    color: #fff; /* Color del texto */
+    padding: 50px 20px; /* Espaciado interior */
+    text-align: center; /* Centrar el texto */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    margin: 20px auto; /* Espaciado exterior */
+}
+
+/* Estilos para el título */
+.hero__title {
+    font-size: 2.5rem; /* Tamaño de fuente para el título */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+/* Estilos para el párrafo */
+.hero__paragraph {
+    font-size: 1.2rem; /* Tamaño de fuente para el párrafo */
+    margin-bottom: 30px; /* Espacio debajo del párrafo */
+    line-height: 1.5; /* Espaciado entre líneas */
+}
+
+/* Estilos para el enlace (botón) */
+.cta {
+    background-color: #f39c12; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 15px 30px; /* Espaciado interior del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1.1rem; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.cta:hover {
+    background-color: #e67e22; /* Cambio de color al pasar el mouse */
+}
+
+.cta {
+    background-color: #2091F9; /* Color del botón */
+    color: rgb(255, 255, 255); /* Color del texto en el botón */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1.2rem; /* Tamaño del texto en el botón */
+    display: inline-block; /* Para que se comporta como un botón */
+    margin-top: 20px; /* Espacio arriba del botón */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+.cta:hover {
+    background-color: #1c7bbd; /* Color al pasar el ratón sobre el botón */
+}
+
+
+/* Navigation */
+nav {
+    background: #ffe259;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: rgb(255, 255, 255);
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #1abc9c;
+    border-radius: 5px;
+}
+
+/* Main content sections */
+
+section {
+    padding: 50px;
+    margin: 30px auto;
+    max-width: 1200px;
+    background-color: #ffffff; /* Fondo blanco para secciones */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Titles for sections */
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50; /* Color oscuro para títulos */
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* Text content */
+section p {
+    font-size: 1.1rem;
+    color: #333; /* Texto oscuro para mejor legibilidad */
+    line-height: 1.7;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Portfolio section */
+#portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#portfolio .member {
+    flex-basis: 30%;
+    background-color: #ecf0f1;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#portfolio .member:hover {
+    transform: translateY(-10px);
+}
+
+#portfolio .member img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+#portfolio .member h3 {
+    font-size: 1.5rem;
+    color: #34495e; /* Títulos de miembros en color oscuro */
+    margin-bottom: 10px;
+}
+
+#portfolio .member p {
+    font-size: 1rem;
+    color: #7f8c8d; /* Color más claro para descripciones */
+}
+
+/* Product Section */
+.products__wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product {
+    flex-basis: 48%;
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.product h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.product p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+/* FAQ Section */
+.questions__padding {
+    margin-bottom: 20px;
+}
+
+.questions__answer {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.questions__title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    cursor: pointer;
+    position: relative;
+}
+
+.questions__arrow {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.questions__img {
+    width: 20px;
+    height: auto;
+}
+
+.questions__show {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Footer */
+footer {
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 1rem;
+        margin: 0 10px;
+    }
+
+    section {
+        padding: 30px;
+    }
+
+    .products__wrapper {
+        flex-direction: column;
+    }
+
+    #portfolio .member {
+        flex-basis: 100%;
+    }
+
+    .questions__padding {
+        margin-bottom: 10px;
+    }
+}
